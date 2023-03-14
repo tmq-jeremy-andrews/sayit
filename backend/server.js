@@ -2,6 +2,9 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 
+// Route imports
+const userRoutes = require("./routes/user");
+
 const app = express();
 
 // Middleware
@@ -16,7 +19,7 @@ app.use((req, res, next) => {
 });
 
 // Routes
-// Routes go here
+app.use("/api/users", userRoutes);
 
 /**
  * Attempt to connect to database located in provided MongoDB URI
