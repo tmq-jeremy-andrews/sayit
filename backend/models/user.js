@@ -24,15 +24,14 @@ const userSchema = new Schema({
       required: true,
     },
   },
-  phone_number: {
-    verified: {
-      type: Boolean,
-      default: false,
-    },
-    number: {
-      type: String,
-      required: true,
-    },
+  verified: {
+    type: Boolean,
+    default: false,
+  },
+  number: {
+    type: String,
+    required: true,
+    unique: true,
   },
 });
 
