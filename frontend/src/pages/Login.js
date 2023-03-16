@@ -18,6 +18,7 @@ const Login = () => {
   const { login, error, message, isLoading } = useLogin();
   const { user } = useAuthContext();
 
+  // Redirect user to homepage if they are already logged in
   if (user) {
     return <Navigate to="/" />;
   }
@@ -63,7 +64,6 @@ const Login = () => {
                 sx={{ mt: 1, ml: 1, mr: 1 }}
                 value={password}
               />
-              {/*}
               {error && (
                 <Alert severity="error" sx={{ mt: 1, ml: 1, mr: 1 }}>
                   {error}
@@ -74,13 +74,13 @@ const Login = () => {
                   {message}
                 </Alert>
               )}
-              {*/}
               <Box
                 display="flex"
                 justifyContent="flex-end"
                 alignItems="flex-end"
               >
                 <Button
+                  disabled={isLoading}
                   type="submit"
                   variant="contained"
                   sx={{ mr: 1, mb: 1, mt: 1 }}
