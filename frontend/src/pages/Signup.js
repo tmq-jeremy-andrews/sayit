@@ -30,7 +30,7 @@ const Signup = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    await signup(email, password, confirmPassword);
+    await signup(email, password, confirmPassword, firstName, lastName, number);
   };
 
   return (
