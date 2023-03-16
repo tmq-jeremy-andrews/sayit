@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
+import { useSignup } from "../hooks/useSignup";
+import { useAuthContext } from "../hooks/useAuthContext";
 import {
   Typography,
   TextField,
@@ -17,16 +19,18 @@ const Signup = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [number, setNumber] = useState("");
+  const { signup, error, message, isLoading } = useSignup();
+  const { user } = useAuthContext();
 
-  // TODO add hooks for signup
-  // TODO add hooks for auth context
-
-  // TODO redirect user to homepage if they are already logged in
+  // Redirect user to homepage if they are already logged in
+  if (user) {
+    return <Navigate to="/" />;
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // TODO add handler for signup
+    await signup(email, password, confirmPassword);
   };
 
   return (
@@ -101,7 +105,6 @@ const Signup = () => {
                 sx={{ mt: 1, ml: 1, mr: 1 }}
                 value={number}
               />
-              {/*}
               {error && (
                 <Alert severity="error" sx={{ mt: 1, ml: 1, mr: 1 }}>
                   {error}
@@ -112,14 +115,13 @@ const Signup = () => {
                   {message}
                 </Alert>
               )}
-              {*/}
               <Box
                 display="flex"
                 justifyContent="flex-end"
                 alignItems="flex-end"
               >
                 <Button
-                  // disabled={isLoading}
+                  disabled={isLoading}
                   type="submit"
                   variant="contained"
                   sx={{ mr: 1, mb: 1, mt: 1 }}
