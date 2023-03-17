@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 
 // Route imports
 const userRoutes = require("./routes/user");
+const contactRoutes = require("./routes/contact");
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use((req, res, next) => {
 
 // Routes
 app.use("/api/users", userRoutes);
+app.use("/api/contacts", contactRoutes);
 
 /**
  * Attempt to connect to database located in provided MongoDB URI
