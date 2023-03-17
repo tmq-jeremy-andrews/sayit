@@ -33,6 +33,12 @@ const userSchema = new Schema({
     required: true,
     unique: true,
   },
+  contacts: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
 });
 
 // Static signup method
