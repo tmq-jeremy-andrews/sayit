@@ -62,7 +62,7 @@ const deleteContact = async () => {
   }
 };
 
-module.exprots = {
+module.exports = {
   getContact,
   getAllContacts,
   addContact,
