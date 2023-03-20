@@ -39,7 +39,6 @@ export const useSignup = () => {
     }
 
     if (response.ok) {
-      setIsLoading(false);
       setError(null);
       setMessage(json.message);
       setSuccess(true);
