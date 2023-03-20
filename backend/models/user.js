@@ -33,11 +33,20 @@ const userSchema = new Schema({
     required: true,
     unique: true,
   },
+  contacts: {
+    type: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    unique: true,
+  },
 });
 
 // Static signup method
 userSchema.statics.signup = async function (email, password, phone, name) {
-  if (!email || !password) {
+  if (!email || !password || !phone || !name) {
     throw Error("All fields must be filled");
   }
 
@@ -47,6 +56,13 @@ userSchema.statics.signup = async function (email, password, phone, name) {
 
   if (!validator.isStrongPassword(password)) {
     throw Error("Password is too weak");
+  }
+
+  // TODO Refine validation to allow non-latin characters
+  let fullName = name.first + name.last;
+  fullName = fullName.replace(/\s+/g, "");
+  if (!validator.isAlpha(fullName)) {
+    throw Error("Name is invalid");
   }
 
   if (!validator.isMobilePhone(phone)) {
@@ -62,7 +78,7 @@ userSchema.statics.signup = async function (email, password, phone, name) {
   }
 
   // Check if the number is already associated with an account
-  const numberExists = await this.findOne({ "phone_number.number": phone });
+  const numberExists = await this.findOne({ number: phone });
   if (numberExists) {
     throw Error("Number is already in use");
   }
@@ -76,7 +92,7 @@ userSchema.statics.signup = async function (email, password, phone, name) {
     email,
     password: hash,
     name,
-    "phone_number.number": phone,
+    number: phone,
   });
 
   return user;

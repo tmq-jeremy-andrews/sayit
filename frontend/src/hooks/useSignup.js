@@ -4,6 +4,7 @@ export const useSignup = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
   const [message, setMessage] = useState(null);
+  const [success, setSuccess] = useState(false);
 
   const signup = async (
     email,
@@ -34,14 +35,16 @@ export const useSignup = () => {
       setIsLoading(false);
       setError(json.error);
       setMessage(null);
+      setSuccess(false);
     }
 
     if (response.ok) {
       setIsLoading(false);
       setError(null);
       setMessage(json.message);
+      setSuccess(true);
     }
   };
 
-  return { signup, isLoading, error, message };
+  return { signup, isLoading, error, message, success };
 };
