@@ -12,13 +12,10 @@ const GroupChatSchema = new Schema({
     ref: "User",
     required: true,
   },
-  admins: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
-  ],
+  active: {
+    type: Boolean,
+    default: true,
+  },
   users: [
     {
       type: Schema.Types.ObjectId,
