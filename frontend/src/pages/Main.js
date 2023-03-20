@@ -1,7 +1,10 @@
+import { useEffect, useState } from "react";
+import ChatPreviewList from "../components/ChatPreviewList";
+
 const Main = () => {
   return (
     <>
-      <h1>HOME</h1>
+      <ChatPreviewList />
     </>
   );
 };
