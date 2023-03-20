@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Default from "./components/Default";
-import Home from "./pages/Home";
+import Main from "./pages/Main";
 
 // Import Components
 // Components go here
@@ -15,7 +15,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route element={<Default />}>
-            <Route index path="/" element={<Home />} />
+            <Route index path="/" element={<Main />} />
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
