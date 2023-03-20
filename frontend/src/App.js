@@ -16,6 +16,7 @@ function App() {
         <Routes>
           <Route element={<Default />}>
             <Route index path="/" element={<Main />} />
+            <Route path="/t/:chatId" element={<Main />} />
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />

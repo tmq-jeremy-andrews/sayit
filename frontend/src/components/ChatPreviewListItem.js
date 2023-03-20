@@ -7,7 +7,7 @@ import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 
-export default function ChatPreviewListItem({ chat }) {
+export default function ChatPreviewListItem({ chat, selected, handleClick }) {
   const fontWeight = chat.last_message.read ? "regular" : "bold";
   const title = (
     <Stack direction={"row"} spacing={1}>
@@ -16,7 +16,12 @@ export default function ChatPreviewListItem({ chat }) {
   );
   return (
     <ListItem key={chat._id} alignItems="flex-start">
-      <ListItemButton>
+      <ListItemButton
+        selected={selected}
+        onClick={(event) => {
+          handleClick(event, chat._id);
+        }}
+      >
         <ListItemAvatar>
           <Avatar alt={chat.name} src={chat.avatar} />
         </ListItemAvatar>
